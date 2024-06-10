@@ -1,0 +1,64 @@
+﻿@using Azure_PV_111.Models.Home.ImageSearch;
+@model HomeImageSearchViewModel
+@{
+    ViewData["Title"] = "ImageSearch";
+}
+<h1>Когнітивні сервіси на прикладі пошуку зображень</h1>
+<p></p>
+<form class="row g-3">
+    <div class="col-auto">
+        Введіть, що шукати:
+    </div>
+    <div class="col-auto">
+        <label for="inputSearch" class="visually-hidden">Фрагмент</label>
+        <input type="text"
+               class="form-control"
+               id="inputSearch"
+               name="search"
+               placeholder="Пошуковий запит"
+               value=" ">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Пошук</button>
+    </div>
+</form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Search">Web pages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Images</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="NewsSearch">News</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@if (Model.SearchResponse != null)
+{
+    <p>По запросу @(Model.SearchResponse.queryContext.originalQuery) найдено @(Model.SearchResponse.totalEstimatedMatches) результатов</p>
+
+    @foreach (var value in Model.SearchResponse.value)
+    {
+        <div>
+            <img src="@(value.thumbnailUrl)" alt="Image" />
+            <p>@value.name</p>
+            <p>Сайт источник: <a href="@value.hostPageUrl" target="_blank">@value.hostPageUrl</a></p>
+            <p><a href="@value.contentUrl" target="_blank">Ссылка на картинку з полным розмером</a></p>
+        </div>
+        <hr />
+    }
+}
+
+<p>
+    @Model.ErrorMessage
+</p>

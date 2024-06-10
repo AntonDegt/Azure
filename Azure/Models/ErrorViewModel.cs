@@ -1,4 +1,4 @@
-namespace Azure_PV111.Models
+namespace Azure_PV_111.Models
 {
     public class ErrorViewModel
     {

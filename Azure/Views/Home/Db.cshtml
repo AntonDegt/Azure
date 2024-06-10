@@ -1,0 +1,48 @@
+﻿﻿@{
+    ViewData["Title"] = "Translator";
+}
+<h1 class="display-4">Сервіси СУБД на прикладі MS CosmosDB</h1>
+<h2>SQL та NoSQL</h2>
+<p>
+    SQL бази даних - добре відомі, старі, відпрацьовані технології.
+    Але в них є ряд особливостей, які декому вдаються недоліками:
+    <br />
+    - NULL. Необхідність спеціального "значення" для позначення
+    відсутності даних. Здається логічним, що відсутнє - просто не
+    треба виводити, але таблична структура при цьому порушується.
+    <br />
+    - складність зв'язків Many-to-Many. Для цього створюється окрема
+    таблиця, у якій лише наявне відношення ID інших таблиць.
+    <br />
+    - скалярність типів даних, обмеженість для зберігання масивів.
+    <br />
+    - дублювання даних при об'єднанні таблиць
+    <br />
+    User1 Name1 email1<br />
+    User1 Name1 email2<br />
+    User1 Name1 phone<br />
+    User1 Name1 cellular<br />
+</p>
+<p>
+    NoSQL розвиваються як удосконалення зазначених недоліків.
+    За основу береться JSON як структура з довільним вкладенням.
+
+</p>
+<div class="row">
+    <div class="col">
+        <div id="db-producers-container"></div>
+        Add producer
+        <input name="db-producer"/>
+        <button class="btn btn-outline-info" id="db-add-producer">+</button>
+    </div>
+    <div class="col">
+        Add product
+        <input name="db-product-name" />
+        <input name="db-product-year" type="number"  value="2023" step="1"/>
+        <button class="btn btn-outline-success" id="db-add-product">+</button>
+
+        <div id="db-product-container"></div>
+    </div>
+
+</div>
+<button class="btn btn-secondary" id="db-button-link">LINK</button>

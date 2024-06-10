@@ -1,0 +1,62 @@
+﻿@using System.Text.Json.Nodes;
+@{
+    ViewData["Title"] = "Search";
+    JsonNode rootNode = ViewData["Search"] as JsonNode;
+}
+<h1>Когнитивные сервисы на примере поиска новостей</h1>
+<p>
+
+</p>
+<form class="row g-3">
+    <div class="col-auto">
+        Введите  что искать:
+    </div>
+    <div class="col-auto">
+        <label for="inputSearch" class="visually-hidden">Фрагмент</label>
+        <input type="text"
+               class="form-control"
+               id="inputSearch"
+               name="search"
+               placeholder="Поисковый порядок"
+               value=" ">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Поиск</button>
+    </div>
+</form>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="Search">Web pages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-action="ImageSearch">Images</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">News</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+@ViewData["content"]
+<br />
+<br />
+@if (rootNode != null)
+{
+
+    @(rootNode["queryContext"]["originalQuery"].GetValue<String>())
+    @foreach (var value in (rootNode["value"].AsArray()))
+    {
+        <p>
+            @Html.Raw(value["name"].GetValue<String>())
+        </p>
+    }
+}

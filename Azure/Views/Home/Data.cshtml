@@ -11,24 +11,15 @@
     <li>Файли</li>
     <li>Бази даних</li>
 </ul>
-<p>
-    Збереження в оперативній пам'яті. "+" висока швидкість доступу.
-    "-" енергозалежність, чутливість до перезапусків. Підходить для
-    оперативних даних (постійно оброблюваних), актуальність яких може
-    бути відновлена.
-    Особливість (для програмування) - контролери утворюють свій час
-    існування протягом оброблення запиту. Відповідно, для постійного
-    збереження даних контролери не підходять.
-</p>
 <div class="row">
     <div class="col">
         <h3>RAM</h3>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-        </div>
-        <div class="alert alert-secondary" role="alert">
-            A simple secondary alert—check it out!
-        </div>
+        @foreach (String str in (ViewData["data"] as List<String>))
+        {
+            <div class="alert alert-secondary" role="alert">
+                @str
+            </div>
+        }
     </div>
     <div class="col">
         <h3>File</h3>
